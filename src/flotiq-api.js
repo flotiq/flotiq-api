@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const ProgressBar = require('progress');
 const FormData = require('form-data');
 const logger = require("./logger");
-const {rateLimitInterceptor, throttleInterceptor} = require("../../flotiq-cli/src/util");
+const {rateLimitInterceptor, throttleInterceptor} = require("./util");
 
 module.exports = class FlotiqApi {
   timeout = 60000;
