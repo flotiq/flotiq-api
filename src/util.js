@@ -1,7 +1,7 @@
 const fs = require("fs/promises");
 const util = require("util");
 const traverse = require("traverse");
-const glob = util.promisify(require('glob'));
+const { glob } = require('glob');
 
 function camelize(str) {
   return str
