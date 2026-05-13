@@ -7,7 +7,12 @@
     "test": "vitest run",
     "test:watch": "vitest"
   },
-  "keywords": ["flotiq", "cms", "headless", "content"],
+  "keywords": [
+    "flotiq",
+    "cms",
+    "headless",
+    "content"
+  ],
   "author": "Flotiq team <hello@flotiq.com>",
   "license": "MIT",
   "type": "commonjs",
@@ -15,6 +20,7 @@
     "axios": "^1.16.0",
     "form-data": "^4.0.5",
     "progress": "^2.0.3",
+    "traverse": "^0.6.11",
     "winston": "^3.19.0"
   },
   "devDependencies": {
