@@ -2,7 +2,7 @@
   "name": "flotiq-api",
   "version": "1.0.0",
   "description": "Flotiq API",
-  "main": "flotiq-api.js",
+  "main": "src/flotiq-api.js",
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest"
