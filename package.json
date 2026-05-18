@@ -1,21 +1,32 @@
 {
-  "name": "flotiq-api",
+  "name": "@flotiq/api",
   "version": "1.0.0",
   "description": "Flotiq API",
-  "main": "src/flotiq-api.js",
-  "scripts": {
-    "test": "vitest run",
-    "test:watch": "vitest"
-  },
   "keywords": [
     "flotiq",
     "cms",
     "headless",
     "content"
   ],
-  "author": "Flotiq team <hello@flotiq.com>",
+  "homepage": "https://github.com/flotiq/flotiq-api#readme",
+  "bugs": {
+    "url": "https://github.com/flotiq/flotiq-api/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/flotiq/flotiq-api.git"
+  },
   "license": "MIT",
+  "author": "Flotiq team <hello@flotiq.com>",
   "type": "commonjs",
+  "main": "src/flotiq-api.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
   "dependencies": {
     "axios": "^1.16.0",
     "form-data": "^4.0.5",
