@@ -1,11 +1,11 @@
-const axios = require('axios');
-const assert = require('node:assert/strict');
-const ProgressBar = require('progress');
-const FormData = require('form-data');
-const logger = require("./logger");
-const {rateLimitInterceptor, throttleInterceptor} = require("./util");
+import axios from 'axios';
+import assert from 'node:assert/strict';
+import ProgressBar from 'progress';
+import FormData from 'form-data';
+import logger from "./logger.js";
+import { rateLimitInterceptor, throttleInterceptor } from "./util.js";
 
-module.exports = class FlotiqApi {
+export default class FlotiqApi {
   timeout = 60000;
   batchSize = 100;
   contentTypeDefLimit = 1000;
@@ -300,10 +300,10 @@ const apiCache = new Map();
 function getFlotiqApi(apiUrl, apiKey, options = {}) {
     const cacheKey = `${apiUrl}:${apiKey}:${JSON.stringify(options)}`;
     if (!apiCache.has(cacheKey)) {
-        apiCache.set(cacheKey, new (module.exports)(apiUrl, apiKey, options));
+        apiCache.set(cacheKey, new FlotiqApi(apiUrl, apiKey, options));
     }
     return apiCache.get(cacheKey);
 }
 
-module.exports.getFlotiqApi = getFlotiqApi;
+export { getFlotiqApi };
 

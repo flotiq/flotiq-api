@@ -1,8 +1,6 @@
-import { createRequire } from 'node:module';
+import axios from 'axios';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-
-const require = createRequire(import.meta.url);
-const axios = require('axios');
+import FlotiqApi from '../src/flotiq-api.js';
 
 const mockMiddleware = {
   delete: vi.fn(),
@@ -12,12 +10,6 @@ const mockMiddleware = {
   put: vi.fn(),
   request: vi.fn(),
 };
-
-function loadFlotiqApiModule() {
-  const modulePath = require.resolve('../src/flotiq-api.js');
-  delete require.cache[modulePath];
-  return require(modulePath);
-}
 
 beforeEach(() => {
   vi.restoreAllMocks();
@@ -29,8 +21,6 @@ beforeEach(() => {
 
 describe('FlotiqApi', () => {
   it('configures axios middleware with API url, headers and timeout', () => {
-    const FlotiqApi = loadFlotiqApiModule();
-
     const api = new FlotiqApi('https://api.example.com/api', 'secret-token');
 
     expect(api.headers).toEqual({
@@ -46,7 +36,6 @@ describe('FlotiqApi', () => {
   });
 
   it('paginates fetchContentObjects and respects the requested limit', async () => {
-    const FlotiqApi = loadFlotiqApiModule();
     const api = new FlotiqApi('https://api.example.com/api', 'secret-token', {
       batchSizeRead: 2,
     });
@@ -80,7 +69,6 @@ describe('FlotiqApi', () => {
   });
 
   it('returns cached media metadata without downloading the file again', async () => {
-    const FlotiqApi = loadFlotiqApiModule();
     const api = new FlotiqApi('https://api.example.com/api', 'secret-token');
     const cachedMedia = { id: 'media-1' };
     const axiosGet = vi.spyOn(axios, 'get');
@@ -101,7 +89,6 @@ describe('FlotiqApi', () => {
   });
 
   it('downloads remote media and forwards multipart data to uploadMedia', async () => {
-    const FlotiqApi = loadFlotiqApiModule();
     const api = new FlotiqApi('https://api.example.com/api', 'secret-token');
 
     const axiosGet = vi.spyOn(axios, 'get').mockResolvedValue({
@@ -129,20 +116,21 @@ describe('FlotiqApi', () => {
     expect(result).toEqual({ id: 'media-2' });
   });
 
-  it('caches getFlotiqApi instances by connection details and options', () => {
-    const flotiqApiModule = loadFlotiqApiModule();
+  it('caches getFlotiqApi instances by connection details and options', async () => {
+    vi.resetModules();
+    const { getFlotiqApi } = await import('../src/flotiq-api.js');
 
-    const first = flotiqApiModule.getFlotiqApi(
+    const first = getFlotiqApi(
       'https://api.example.com/api',
       'secret-token',
       { batchSize: 25 }
     );
-    const second = flotiqApiModule.getFlotiqApi(
+    const second = getFlotiqApi(
       'https://api.example.com/api',
       'secret-token',
       { batchSize: 25 }
     );
-    const third = flotiqApiModule.getFlotiqApi(
+    const third = getFlotiqApi(
       'https://api.example.com/api',
       'secret-token',
       { batchSize: 50 }

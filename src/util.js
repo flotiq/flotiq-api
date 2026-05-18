@@ -1,4 +1,4 @@
-function rateLimitInterceptor(axios, logger, defaultDelay = 1000) {
+export function rateLimitInterceptor(axios, logger, defaultDelay = 1000) {
   axios.interceptors.response.use(
     response => response,
     async function interceptRateLimit(error) {
@@ -16,7 +16,7 @@ function rateLimitInterceptor(axios, logger, defaultDelay = 1000) {
     });
 }
 
-function throttleInterceptor(axios, delay) {
+export function throttleInterceptor(axios, delay) {
   let lastRequestTime = 0;
 
   axios.interceptors.request.use(async function (config) {
@@ -33,7 +33,4 @@ function throttleInterceptor(axios, delay) {
   });
 }
 
-module.exports = {
-  rateLimitInterceptor,
-  throttleInterceptor
-}
+

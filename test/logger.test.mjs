@@ -1,9 +1,6 @@
-import { createRequire } from 'node:module';
 import { describe, expect, it } from 'vitest';
+import logger from '../src/logger.js';
 
-const require = createRequire(import.meta.url);
-
-const logger = require('../src/logger.js');
 const levelSymbol = Symbol.for('level');
 
 function stripAnsi(value) {

@@ -18,7 +18,7 @@
   },
   "license": "MIT",
   "author": "Flotiq team <hello@flotiq.com>",
-  "type": "commonjs",
+  "type": "module",
   "main": "src/flotiq-api.js",
   "directories": {
     "test": "test"
