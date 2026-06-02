@@ -293,6 +293,29 @@ export default class FlotiqApi {
       }
     }
   }
+
+  async purgeSpace(spaceId){
+    assert(typeof spaceId === 'string');
+
+    const uri = `/spaces/${spaceId}/purge`;
+
+    const obj = {
+      "spaceId": spaceId
+    }
+    return this.middleware.post(uri, obj);
+  }
+
+  async purgeCtd(ctdName, deleteSchema = false) {
+    assert(typeof ctdName === 'string');
+    assert(typeof deleteSchema === 'boolean');
+
+    const uri = `/internal/contenttype/${ctdName}/purge`;
+
+    const obj = {
+      "deleteSchema": deleteSchema
+    }
+    return this.middleware.post(uri, obj);
+  }
 };
 
 const apiCache = new Map();
