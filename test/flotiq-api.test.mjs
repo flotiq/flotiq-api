@@ -20,6 +20,13 @@ beforeEach(() => {
 });
 
 describe('FlotiqApi', () => {
+  it('exposes default and named exports via package entrypoint', async () => {
+    const entrypoint = await import('../src/index.js');
+
+    expect(typeof entrypoint.default).toBe('function');
+    expect(typeof entrypoint.getFlotiqApi).toBe('function');
+  });
+
   it('configures axios middleware with API url, headers and timeout', () => {
     const api = new FlotiqApi('https://api.example.com/api', 'secret-token');
 

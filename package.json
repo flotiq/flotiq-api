@@ -1,6 +1,6 @@
 {
   "name": "@flotiq/api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Flotiq API",
   "keywords": [
     "flotiq",
@@ -19,7 +19,14 @@
   "license": "MIT",
   "author": "Flotiq team <hello@flotiq.com>",
   "type": "module",
-  "main": "src/flotiq-api.js",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "default": "./src/index.js"
+    }
+  },
   "directories": {
     "test": "test"
   },
