@@ -1,4 +1,7 @@
-import FlotiqApi, { getFlotiqApi } from './flotiq-api.js';
+import FlotiqApi from './flotiq-api.js';
+import logger from './logger.js';
 
-export { FlotiqApi, getFlotiqApi };
+export { FlotiqApi };
+export { getFlotiqApi } from './flotiq-api.js';
+export { logger };
 export default FlotiqApi;

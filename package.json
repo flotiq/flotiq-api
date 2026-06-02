@@ -1,6 +1,6 @@
 {
   "name": "@flotiq/api",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Flotiq API",
   "keywords": [
     "flotiq",
@@ -25,6 +25,18 @@
     ".": {
       "import": "./src/index.js",
       "default": "./src/index.js"
+    },
+    "./logger": {
+      "import": "./src/logger.js",
+      "default": "./src/logger.js"
+    },
+    "./logger.js": {
+      "import": "./src/logger.js",
+      "default": "./src/logger.js"
+    },
+    "./src/logger.js": {
+      "import": "./src/logger.js",
+      "default": "./src/logger.js"
     }
   },
   "directories": {
