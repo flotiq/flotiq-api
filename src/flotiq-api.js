@@ -286,7 +286,10 @@ export default class FlotiqApi {
         await actions[method]();
       } catch (e) {
         console.dir(e.response?.data?.errors, { depth: undefined });
-        throw new Error(e.message);
+        const err = new Error(e.message);
+        err.response = { status: e.response?.status, data: e.response?.data };
+        err.code = e.code;
+        throw err;
       }
       if (bar) {
         bar.tick(this.batchSize);
